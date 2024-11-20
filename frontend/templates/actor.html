@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card-header" id="heading{{.field.variable}}">
+        <h5 class="mb-0">
+            <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapse{{.field.variable}}" aria-expanded="false" 
+                aria-controls="collapse{{.field.variable}}">Dettagli {{.field.label}}</button>
+        </h5>
+    </div>
+    <div class="collapse" id="collapse{{.field.variable}}" aria-labelledby="heading{{.field.variable}}" data-bs-parent="#accordion">
+        <div class="card-body">
+            {{range .field.fields}}
+            <div class="row mb-3">
+                <label for="input{{.variable}}" class="col-sm-2 col-form-label">{{.label}}:</label>
+                <div class="col-sm-10">
+                    <input type="{{.type}}" class="form-control" id="input{{.variable}}" name="input{{.variable}}" 
+                        value="{{if $.values}}{{index $.values .key}}{{end}}" aria-describedby="input{{.variable}}Help">
+                    <div id="input{{.variable}}Help" class="form-text">{{.help}}</div>
+                </div>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</div>

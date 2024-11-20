@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	{{ template "head.html" .}}
+	<link rel="stylesheet" href="./ckeditor5/ckeditor5.css">
+  </head>
+  <body>
+    {{ template "navbar.html" .}}
+
+	<div class="offcanvas offcanvas-start" style="width: 700px;" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+		<div class="offcanvas-header">
+			<h5 class="offcanvas-title" id="offcanvasLabel">Gestore immagini</h5>
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+			<div style="display: flex; flex-wrap: wrap;">
+				<div class="col-12" style="margin-top: 16px;">
+					<div class="row g-3">
+						<div class="col-3"></div>
+						<div class="col-6"></div>
+						<div class="col-3 d-grid gap-2">
+							<button type="button" class="btn btn-warning btn-sm" id="uploadImageButton">Upload image</button>
+						</div>
+					</div>
+					<div class="row g-3">
+						<div class="col-3">File:</div>
+						<div class="col-6">
+							<label for="imageNameLabel" class="visually-hidden">Imaege Name</label>
+							<input type="text" class="form-control form-control-sm" id="imageNameLabel" placeholder="Image name">
+						</div>
+						<div class="col-3 d-grid gap-2">
+							<button type="button" class="btn btn-primary btn-sm" id="insertImageButton">Add image</button>
+						</div>
+					</div>
+					<div class="row g-3">
+						<div class="col-3">Statistiche:</div>
+						<div class="col-6">Width x Height</div>
+						<div class="col-3 d-grid gap-2">
+							<button type="button" class="btn btn-danger btn-sm" id="delImageButton" data-bs-toggle="modal" data-bs-target="#delImageModal">Delete image</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-12">
+					{{ template "gallery.html" .}}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="delImageModal" tabindex="-1" aria-labelledby="delImageModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="delImageModalLabel">Richiesta cancellazione immagine</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">E' stata richiesta dell'immagine <span id="delImageModelName">...</span>. Confermi la cancellazione?</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+				<button type="button" class="btn btn-primary" id="delImageModalConfirm">Cencella immagine</button>
+			</div>
+		</div>
+		</div>
+	</div>
+  
+    <div class="main-container">
+		<div style="width: fit-content; margin-left:auto; margin-right:auto;">
+			<div class="editor-container editor-container_document-editor" id="editor-container">
+				<div class="editor-container__menu-bar" id="editor-menu-bar"></div>
+				<div class="editor-container__toolbar" id="editor-toolbar"></div>
+				<div class="editor-container__editor-wrapper">
+					<div class="editor-container__editor"><div id="editor"></div></div>
+				</div>
+			</div>
+			<div class="editor-container__footer" id="editor-footer">
+				<div id="editor-container__status">
+					<div id="editor-container__status_label">Status:</div>
+					<div id="editor-container__status_spinner">
+						<span id="editor-container__status_spinner-label"></span>
+						<span id="editor-container__status_spinner-loader"></span>
+					</div>
+				</div>
+				<div id="snippet-autosave-server">
+					<div id="snippet-autosave-server_label">HTTP server lag (ms):</div>
+					<input id="snippet-autosave-lag" type="number" value="500" step="100" min="0" max="9000">
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<script type="importmap">
+	{
+		"imports": {
+			"ckeditor5": "./ckeditor5/ckeditor5.js",
+			"ckeditor5/": "./ckeditor5/"
+		}
+	}
+	</script>
+	<script type="module" src="./main.js"></script>
+	<script type="module" src="./scrollthumb.js"></script>
+  </body>
+</html>

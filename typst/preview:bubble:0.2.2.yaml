@@ -1,0 +1,12 @@
+args:
+  - key: title
+    label: Titolo
+    variable: Title
+    type: string
+    help: Titolo della procedura.
+  - key: subtitle
+    label: Sottotitolo
+    variable: Subtitle
+    type: string
+    help: Sottotitolo della procedura.
+  

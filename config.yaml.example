@@ -1,0 +1,4 @@
+basepath: workspace/
+project: test-project
+procedure: test-procedure
+template: "preview:bubble:0.2.2"
