@@ -9,8 +9,9 @@ Trappist editor is a simple text editor that uses CKEditor as WYSIWYG editor and
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied 
 warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 
-This program is stil under early development and is not yet ready for production use. *Do not run this program on internet 
-connected machines* beacuse a lot if is requests are not sanitized yet.
+This program is stil under early development and is not yet ready for production use. *Do not run this program with 
+its web server exposed on public internet beacuse the input requests are not sanitized yet*.
+The program lacks lacks a lot of features particularly an authentication mechanism.
 
 ## Requirements
 
