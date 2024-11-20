@@ -25,6 +25,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
 	"time"
 
 	"github.com/gin-contrib/static"
@@ -34,11 +35,19 @@ import (
 	"siralab.com/testapp/gotypst"
 )
 
+const DEFAULT_PORT = 8080
+
+type AppConfigHttp struct {
+	Port int    `yaml:"port"`
+	Addr string `yaml:"addr"`
+}
+
 type AppConfig struct {
-	BasePath  string `yaml:"basepath"`
-	Project   string `yaml:"project"`
-	Procedure string `yaml:"procedure"`
-	Template  string `yaml:"template"`
+	Http      AppConfigHttp `yaml:"http"`
+	BasePath  string        `yaml:"basepath"`
+	Project   string        `yaml:"project"`
+	Procedure string        `yaml:"procedure"`
+	Template  string        `yaml:"template"`
 }
 
 type DocGetReply struct {
@@ -337,6 +346,11 @@ func loadConfig() error {
 			err = yaml.Unmarshal(buffer, &config)
 		}
 	}
+	if err == nil {
+		if config.Http.Port == 0 {
+			config.Http.Port = DEFAULT_PORT
+		}
+	}
 	return err
 }
 
@@ -429,5 +443,5 @@ func main() {
 	})
 
 	router.GET("document")
-	router.Run(":8080")
+	router.Run(config.Http.Addr + ":" + strconv.Itoa(config.Http.Port))
 }
